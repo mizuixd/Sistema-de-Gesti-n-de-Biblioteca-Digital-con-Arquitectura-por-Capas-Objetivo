@@ -1,0 +1,48 @@
+from modelos.libro import Libro
+from modelos.usuario import Usuario
+from servicios.biblioteca_servicio import BibliotecaServicio
+
+def menu():
+    biblioteca = BibliotecaServicio()
+
+    while True:
+        print("\n--- Menú Biblioteca Digital ---")
+        print("1. Agregar libro")
+        print("2. Quitar libro")
+        print("3. Registrar usuario")
+        print("4. Dar de baja usuario")
+        print("5. Prestar libro")
+        print("6. Devolver libro")
+        print("7. Buscar libro por título")
+        print("8. Buscar libro por autor")
+        print("9. Buscar libro por categoría")
+        print("10. Listar libros de usuario")
+        print("0. Salir")
+
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
+            titulo = input("Título: ")
+            autor = input("Autor: ")
+            categoria = input("Categoría: ")
+            isbn = input("ISBN: ")
+            libro = Libro(titulo, autor, categoria, isbn)
+            biblioteca.agregar_libro(libro)
+            print("Libro agregado correctamente.")
+
+        elif opcion == "3":
+            nombre = input("Nombre: ")
+            id_usuario = input("ID Usuario: ")
+            usuario = Usuario(nombre, id_usuario)
+            biblioteca.registrar_usuario(usuario)
+            print("Usuario registrado correctamente.")
+
+        elif opcion == "0":
+            print("Saliendo del sistema...")
+            break
+
+        else:
+            print("Opción no implementada aún.")
+
+if __name__ == "__main__":
+    menu()
